@@ -1,0 +1,4 @@
+在c语言中，声明字符串变量有多种方式，包括但不限于
+1. char *s = "hello, world!"
+2. char s[] = "hello,world!"
+3. char s[20] = "hello,world!"
