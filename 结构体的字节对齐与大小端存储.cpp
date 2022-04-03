@@ -5,7 +5,7 @@
 #pragma pack(1) //#pragma pack(n)设置按照n个字节对齐，n位2的幂次，n为1时表示不对齐；对齐的字节数取min(元素默认对齐数,n)
 struct notalignA{ // #pragma pack() 表示清除当前的字节对齐设置，恢复默认设置
     char c;       // 默认字节设置为 元素的偏移量为元素字节数的整数倍（包括0），即sizeof(x)的整数倍
-    int a;        // 最终结构体的大小必须为最大元素字节数的整数倍或n的整数倍（如果由pragma(n)的话)
+    int a;        // 最终结构体的大小必须为最大元素字节数的整数倍或n的整数倍（如果有pragma(n)的话)
     int b;
     int e;
     int* f;
@@ -27,8 +27,8 @@ struct A{
     int e;  // 偏移量为12
     char f; // 偏移量为16
     struct l g; // 偏移量为20,原本g作为struct l变量，其偏移量为结构体成员中字节对齐的最大值8，但pack(4)使其偏移量为4的倍数即可
-}; //最终 struct A占据44个字节
-
+}; //最终 struct A占据44个字节,由于存在pack(4)，则结构体的大小为4的倍数即可
+#pragma pack()
 
 using namespace std;
 
@@ -75,4 +75,3 @@ int main(){
 
     return 0;
 }
-
